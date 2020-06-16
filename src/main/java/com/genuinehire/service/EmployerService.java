@@ -1,8 +1,7 @@
 package com.genuinehire.service;
 
-import org.springframework.stereotype.Service;
+import com.genuinehire.domain.Employer;
 
-@Service
-public class EmployerService {
-
+public interface EmployerService {
+    void save(Employer e);
 }
