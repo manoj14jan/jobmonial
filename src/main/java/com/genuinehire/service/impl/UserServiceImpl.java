@@ -3,6 +3,7 @@ package com.genuinehire.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genuinehire.domain.User;
@@ -40,6 +41,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User addUser(User user) {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		String userPass = bCryptPasswordEncoder.encode(user.getPassword());
+		user.setPassword(userPass);
+		user.setEnabled(1);
 		return userRepository.save(user);
 	}
 	

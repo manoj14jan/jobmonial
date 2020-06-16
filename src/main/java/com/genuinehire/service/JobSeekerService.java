@@ -15,11 +15,6 @@ public class JobSeekerService {
 	private JobSeekerRepository jobSeekerRepository;
 
 	public JobSeeker saveJobSeeker(JobSeeker jobSeeker) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String password = encoder.encode(jobSeeker.getUser().getPassword());
-		jobSeeker.getUser().setPassword(password);
-		jobSeeker.getUser().setRole(Role.ROLE_JOBSEEKER.toString());
-		jobSeeker.getUser().setEnabled(1);
 		return jobSeekerRepository.save(jobSeeker);
 	}
 	

@@ -1,8 +1,12 @@
 package com.genuinehire.controller;
 
 import com.genuinehire.domain.Employer;
+import com.genuinehire.domain.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,17 +22,27 @@ public class EmployerController {
 	@Autowired
 	private EmployerService employerService;
 
-	@RequestMapping("/register")
-	public String registrationPage(Map<String,Object> model){
-		Employer employer = new Employer();
-		model.put("employer", employer);
-		return "register-employer";
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(@ModelAttribute Employer employer, Authentication authentication) {
+		employer = employerService.getEmployerByUsername(authentication.getName());
+
+		if (employer == null) {
+			return "employer/employer-form";
+		}
+
+		return "/employer/employer-home";
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registrationPagePost(@ModelAttribute("employer") Employer employer){
-		employerService.save(employer);
-		return "success";
+	@RequestMapping(value = "/profile")
+	public String homes(@ModelAttribute Employer employer, Authentication authentication) {
+		employer = employerService.getEmployerByUsername(authentication.getName());
+		return "/employer/employer-profile";
 	}
+
+	/*@RequestMapping(value = "/profile/update", method = RequestMethod.GET)
+	public String jobSeekerRegisterForm(@ModelAttribute JobSeeker jobSeeker, Authentication authentication) {
+		jobSeeker = jobSeekerService.getJobSeekerByUsername(authentication.getName());
+		return "/jobseeker/jobseeker-profile-update";
+	}*/
 
 }
