@@ -39,7 +39,7 @@ public class HomeController {
 		}
 
 		if (user.getRole().contains("ROLE_EMPLOYER")) {
-			return "redirect:/employer";
+			return "redirect:/employer/home";
 		}
 
 		if (user.getRole().contains("ROLE_JOBSEEKER")) {

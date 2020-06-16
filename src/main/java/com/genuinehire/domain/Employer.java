@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -24,12 +24,20 @@ public class Employer {
     @Size(min = 0, max = 50)
     private String surname;
 
+    @NotEmpty
+    @Pattern(regexp = "^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$",message = "{valid.phone}")
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "about_you", columnDefinition = "TEXT")
+    private String aboutYou;
+
     @Email
     @NotEmpty
     private String email;
 
     @Valid
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
@@ -63,6 +71,22 @@ public class Employer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAboutYou() {
+        return aboutYou;
+    }
+
+    public void setAboutYou(String aboutYou) {
+        this.aboutYou = aboutYou;
     }
 
     public User getUser() {
