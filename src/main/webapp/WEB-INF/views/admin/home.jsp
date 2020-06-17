@@ -1,12 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<jsp:include page="../header.jsp" />
+<title>Admin Login</title>
 </head>
 <body>
-<h1>admin home</h1>
+	<div class="container">
+		<jsp:include page="./navbar.jsp" />
+
+	</div>
+	<jsp:include page="../footer.jsp" />
 </body>
+</html>
 </html>
