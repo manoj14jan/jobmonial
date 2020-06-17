@@ -28,13 +28,13 @@ public class EmployerController {
     private JobService jobService;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String home(@ModelAttribute Employer employer, Authentication authentication) {
+    public String home(@ModelAttribute Employer employer, Authentication authentication, Model m) {
         employer = employerService.getEmployerByUserUsername(authentication.getName());
 
         if (employer == null) {
             return "employer/employer-form";
         }
-
+        m.addAttribute("jobs", jobService.getEmployerJobs(employer));
         return "/employer/employer-home";
     }
 
@@ -97,8 +97,7 @@ public class EmployerController {
         }
         job.setEmployer(employer);
         jobService.save(job);
-        return "";
-        //return "employer/employer-job-post";
+        return "/employer/employer-jobs";
     }
 
 

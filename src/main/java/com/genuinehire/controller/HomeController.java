@@ -2,9 +2,12 @@ package com.genuinehire.controller;
 
 import javax.validation.Valid;
 
+import com.genuinehire.domain.Job;
+import com.genuinehire.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,11 +22,16 @@ import com.genuinehire.service.JobSeekerService;
 import com.genuinehire.service.UserService;
 import com.genuinehire.util.Role;
 
+import java.util.List;
+
 @Controller
 public class HomeController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private JobService jobService;
 
 	@RequestMapping(value = "/")
 	public String index() {
@@ -70,12 +78,19 @@ public class HomeController {
 		user = userService.addUser(user);
 		redirectAttributes.addFlashAttribute(user);
 		return "redirect:/register/success";
-
 	}
 
 	@RequestMapping(value = "/register/success", method = RequestMethod.GET)
 	public String registerSuccess(@ModelAttribute User user) {
 		return "register-success";
+	}
+
+
+	@RequestMapping(value = "/jobs", method = RequestMethod.GET)
+	public String showJobs(Model m) {
+		List<Job> jobList = jobService.getAll();
+		m.addAttribute("jobs", jobList);
+		return "employer/employer-jobs";
 	}
 
 	// Job seeker registration
