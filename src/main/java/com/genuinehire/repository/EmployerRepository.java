@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployerRepository extends CrudRepository<Employer, Long> {
     Employer getEmployerByUserUsername(String name);
+    Employer getEmployerById(Long id);
 }

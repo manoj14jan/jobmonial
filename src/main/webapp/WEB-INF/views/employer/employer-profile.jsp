@@ -31,8 +31,8 @@
 
             </ul>
             <div class="card-body">
-                <a href="#" class="card-link">Edit Profile</a>
-                <a href="#" class="card-link">Delete Profile</a>
+                <a href="${pageContext.request.contextPath}/employer/profile/update" class="card-link">Edit Profile</a>
+                <a href="${pageContext.request.contextPath}/employer/profile/delete" class="card-link">Delete Profile</a>
             </div>
         </div>
     </div>

@@ -37,9 +37,13 @@ public class Employer {
     private String email;
 
     @Valid
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    /*@ManyToOne
+    @JoinColumn(name = "job_id", referencedColumnName = "id")
+    private Job job;*/
 
     public long getId() {
         return id;
@@ -95,9 +99,5 @@ public class Employer {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Employer getEmployerByUsername(String name) {
-        return null;
     }
 }
