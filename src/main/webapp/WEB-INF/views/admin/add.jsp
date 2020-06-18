@@ -29,39 +29,28 @@
 
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">Registration Form</h5>
-						<h6 class="card-subtitle mb-2 text-muted">Fields are required
-							which mark with *</h6>
+						<h5 class="card-title">Add new Admin</h5>
 
 						<div class="form-group">
-							<label for="username">Username*</label>
 							<form:input path="username" cssClass="form-control" id="username"
 								aria-describedby="username" placeholder="Enter username" />
 							<form:errors path="username" cssClass="invalid-feedback"
 								element="div" />
-							<small id="usernameHelp" class="form-text text-muted">Remember
-								your Username for login</small>
 						</div>
 
 						<div class="form-group">
-							<label for="password">Password*</label>
 							<form:password path="password" cssClass="form-control"
 								id="password" placeholder="Enter password" />
 							<form:errors path="password" cssClass="invalid-feedback"
 								element="div" />
-							<small id="usernameHelp" class="form-text text-muted">Remember
-								your Password for login</small>
 						</div>
 
 						<div class="form-group">
-							<label for="password">Retype Password*</label>
 							<form:password path="retypePassword" cssClass="form-control"
 								id="retypePassword" aria-describedby="retypePassword"
 								placeholder="Retype Password" />
 							<form:errors path="retypePassword" cssClass="invalid-feedback"
 								element="div" />
-							<small id="retypePasswordHelp" class="form-text text-muted">Retype
-								Password must be same as Password</small>
 						</div>
 
 						<button type="submit" class="btn btn-primary">Submit</button>

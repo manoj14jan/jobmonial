@@ -15,12 +15,13 @@
 <div class="container">
 		<jsp:include page="./navbar.jsp" />
 		<h1 class="display-4">Results</h1>
-		<table style="width: 100%;">
+		<table class="table table-hover">
 			<tr>
 		    	<th>First Name</td>
 		    	<th>Last Name</td>
 		    	<th>Phone</td>
 	    		<th>Email</td>
+	    		<th style='text-align:center'>Admin Action</th>
 		    </tr>
 			
 			<tr>
@@ -28,6 +29,7 @@
 		        <td><c:out value="${lists.surname}"/></td>
 		        <td><c:out value="${lists.phone}"/></td>
 		        <td><c:out value="${lists.email}"/></td>
+		        <td style='text-align:center'><button type="submit" class="btn btn-danger">Block User</button></td>
 		    </tr>
 			
 		</table>
