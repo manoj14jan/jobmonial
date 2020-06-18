@@ -35,8 +35,8 @@
 
 		<form action="<%=request.getContextPath()%>/logout" method="post"
 			class="form-inline my-2 my-lg-0">
-			<div class="btn my-2 my-sm-0" style="color:#fff">Welcome, <sec:authentication property="name"/></div>
-			<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
+<%-- 			<div class="btn my-2 my-sm-0" style="color:#fff">Welcome, <sec:authentication property="name"/></div>
+ --%>			<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
 		</form>
 	</div>
 </nav>
