@@ -1,5 +1,6 @@
 package com.genuinehire.service.impl;
 
+import com.genuinehire.domain.Employer;
 import com.genuinehire.domain.JobSeeker;
 import com.genuinehire.domain.User;
 import com.genuinehire.repository.AdminRepository;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AdminServiceimpl implements AdminService {
+public class AdminServiceImpl implements AdminService {
 
     @Autowired
     AdminRepository adminRepository;
@@ -31,6 +32,5 @@ public class AdminServiceimpl implements AdminService {
     public List<JobSeeker> getUserByprofileTitleAndName(String profileTitle, String name) {
 
         return adminRepository.findAllUsersByprofileTitleAndName(name,profileTitle);
-
     }
 }

@@ -34,7 +34,7 @@
 						href="${pageContext.request.contextPath}/admin/jobSeekerSearch">Job Seeker
 						Search</a>
 					<a class="dropdown-item"
-						href="">Employer Search</a>
+						href="${pageContext.request.contextPath}/admin/employerSearch">Employer Search</a>
 				</div>
 			</li>
 

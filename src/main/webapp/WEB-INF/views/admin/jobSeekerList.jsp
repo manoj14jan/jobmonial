@@ -15,7 +15,7 @@
 <div class="container">
 		<jsp:include page="./navbar.jsp" />
 		<h1 class="display-4">Results</h1>
-		<table style="width: 100%;">
+		<table style="width: 100%;" class="table table-hover">
 			<tr>
 		    	<th>First Name</td>
 		    	<th>Last Name</td>
@@ -23,6 +23,7 @@
 		    	<th>Experience</td>
 		    	<th>Phone</td>
 		    	<th>Profile Type</td>
+		    	<th style='text-align:center'>Admin Action</th>
 		    </tr>
 			<c:forEach items="${lists}" var="list">
 				<tr>
@@ -32,6 +33,7 @@
 			        <td><c:out value="${list.experience}"/></td>
 			        <td><c:out value="${list.phone}"/></td>
 			        <td><c:out value="${list.profileTitle}"/></td>
+			        <td style='text-align:center'><button type="submit" class="btn btn-danger">Block User</button></td>
 			    </tr>
 			</c:forEach>
 		</table>
