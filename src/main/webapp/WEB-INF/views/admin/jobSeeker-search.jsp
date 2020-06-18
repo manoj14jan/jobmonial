@@ -26,17 +26,13 @@
 </head>
 <body>
 <div class="container">
-    <jsp:include page="../navbar.jsp" />
+    <jsp:include page="navbar.jsp" />
     <div class="jumbotron">
         <form:form modelAttribute="jobSeeker">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">JobSeeker Search</h5>
-                    <div class="form-group">
-                        <form:input path="firstName" cssClass="form-control" id="firstName"
-                        aria-describedby="firstName" placeholder="Username, or" />
-                        <form:errors path="firstName" cssClass="invalid-feedback" element="div" />
-                    </div>
+
                     <div class="form-group">
                         <form:input path="profileTitle" cssClass="form-control" id="profileTitle"
                         aria-describedby="profileTitle" placeholder="Job Title" />

@@ -19,9 +19,7 @@
 					<span class="sr-only">(current)</span>
 				</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="${pageContext.request.contextPath}/admin/profile">My Profile</a>
-			</li>
+
 
 			<li class="nav-item">
 				<a class="nav-link" href="${pageContext.request.contextPath}/admin/add">Add Admin</a>
