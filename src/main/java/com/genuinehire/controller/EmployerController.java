@@ -14,8 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.genuinehire.service.EmployerService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/employer")
@@ -127,13 +128,15 @@ public class EmployerController {
 
     @RequestMapping(value = "/hire", method = RequestMethod.GET)
     public String hireEmployee(Model m) {
-        m.addAttribute("jobseekers", jobSeekerService.getAllJobSeekers());
+        List<JobSeeker> jobSeekers = jobSeekerService.getAllJobSeekers().stream().filter(x-> x.getStatus() != null && x.getStatus().equalsIgnoreCase("seeking")).collect(Collectors.toList());
+        m.addAttribute("jobseekers", jobSeekers);
         return "/employer/employer-hire";
     }
 
     @RequestMapping(value = "/hire/{id}/save", method = RequestMethod.GET)
-    public String saveEmployer(Model m, @PathVariable("id") Long id) {
-        m.addAttribute("jobs", jobService.getAll());
+    public String saveEmployer(Model m, @PathVariable("id") Long id, Authentication authentication) {
+        Employer employer = employerService.getEmployerByUserUsername(authentication.getName());
+        m.addAttribute("jobs", jobService.getEmployerJobs(employer).stream().filter(x -> x != null && x.getStatus().equals("available")).collect(Collectors.toList()));
         m.addAttribute("jobSeekerId", id);
         return "/employer/employer-hire-jobselect";
     }
@@ -141,9 +144,21 @@ public class EmployerController {
     @RequestMapping(value = "/hire/{id}/savedata", method = RequestMethod.POST)
     public String saveEmployerData(@RequestParam("jobSeekerId") Long jobSeekerId,Model m, @PathVariable("id") Long jobId) {
         JobSeeker jobSeeker = jobSeekerService.getJobSeekerById(jobSeekerId);
+        jobSeeker.setStatus("hired");
+        jobSeekerService.saveJobSeeker(jobSeeker);
+
         Job job = jobService.getJobById(jobId);
         job.setJobSeeker(jobSeeker);
+        job.setStatus("closed");
+
         jobService.save(job);
-        return "redirect:/employer/home";
+        return "redirect:/employer/hired";
+    }
+
+    @RequestMapping(value = "/hired", method = RequestMethod.GET)
+    public String showEmployees(Model m,Authentication authentication) {
+        Employer employer = employerService.getEmployerByUserUsername(authentication.getName());
+        m.addAttribute("jobs", jobService.getEmployerJobs(employer).stream().filter(x->x.getJobSeeker() != null).collect(Collectors.toList()));
+        return "/employer/employer-hired";
     }
 }

@@ -6,8 +6,6 @@ import com.genuinehire.repository.JobRepository;
 import com.genuinehire.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.sql.rowset.Predicate;
 import java.util.List;
 
 @Service

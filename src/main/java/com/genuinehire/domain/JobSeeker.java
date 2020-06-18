@@ -2,7 +2,6 @@ package com.genuinehire.domain;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -17,7 +16,6 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -68,6 +66,9 @@ public class JobSeeker implements Serializable {
 
 	@Column(name = "about_you", columnDefinition = "TEXT")
 	private String aboutYou;
+
+	@Column(name = "status")
+	private String status;
 
 	@Valid
 	@OneToOne(cascade = CascadeType.ALL)
@@ -212,5 +213,13 @@ public class JobSeeker implements Serializable {
 	 */
 	public void setProfileTitle(String profileTitle) {
 		this.profileTitle = profileTitle;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

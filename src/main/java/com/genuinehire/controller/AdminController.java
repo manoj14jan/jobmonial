@@ -18,13 +18,10 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-
-
-
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String home(@ModelAttribute JobSeeker jobSeeker, Model model) {
- model.addAttribute("JobSeeker",jobSeeker);
-	return "admin/admin-search";
+ 		model.addAttribute("JobSeeker",jobSeeker);
+		return "admin/admin-search";
 	}
 
 	@RequestMapping(value="/search", method=RequestMethod.POST)

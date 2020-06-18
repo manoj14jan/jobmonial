@@ -27,6 +27,9 @@ public class Job {
     @Column(name = "job_salary")
     private Integer salary;
 
+    @Column(name = "status")
+    private String status;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     private Employer employer;
@@ -89,5 +92,13 @@ public class Job {
 
     public void setJobSeeker(JobSeeker jobSeeker) {
         this.jobSeeker = jobSeeker;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

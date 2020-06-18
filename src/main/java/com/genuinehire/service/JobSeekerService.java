@@ -1,12 +1,10 @@
 package com.genuinehire.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genuinehire.domain.JobSeeker;
 import com.genuinehire.repository.JobSeekerRepository;
-import com.genuinehire.util.Role;
 
 import java.util.List;
 
@@ -17,6 +15,9 @@ public class JobSeekerService {
 	private JobSeekerRepository jobSeekerRepository;
 
 	public JobSeeker saveJobSeeker(JobSeeker jobSeeker) {
+		if(jobSeeker.getStatus() == null || jobSeeker.getStatus().equalsIgnoreCase("")) {
+			jobSeeker.setStatus("seeking");
+		}
 		return jobSeekerRepository.save(jobSeeker);
 	}
 	
