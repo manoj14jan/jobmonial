@@ -8,6 +8,8 @@ import com.genuinehire.domain.JobSeeker;
 import com.genuinehire.repository.JobSeekerRepository;
 import com.genuinehire.util.Role;
 
+import java.util.List;
+
 @Service
 public class JobSeekerService {
 
@@ -15,11 +17,6 @@ public class JobSeekerService {
 	private JobSeekerRepository jobSeekerRepository;
 
 	public JobSeeker saveJobSeeker(JobSeeker jobSeeker) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String password = encoder.encode(jobSeeker.getUser().getPassword());
-		jobSeeker.getUser().setPassword(password);
-		jobSeeker.getUser().setRole(Role.ROLE_JOBSEEKER.toString());
-		jobSeeker.getUser().setEnabled(1);
 		return jobSeekerRepository.save(jobSeeker);
 	}
 	
@@ -27,4 +24,11 @@ public class JobSeekerService {
 		return jobSeekerRepository.findByUserUsername(username);
 	}
 
+    public List<JobSeeker> getAllJobSeekers() {
+		return (List<JobSeeker>)jobSeekerRepository.findAll();
+    }
+
+    public JobSeeker getJobSeekerById(Long id) {
+		return jobSeekerRepository.findOne(id);
+    }
 }

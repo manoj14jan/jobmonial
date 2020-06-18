@@ -17,7 +17,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Search Jobs</a>
+				<a class="nav-link" href="${pageContext.request.contextPath}/jobs">Search Jobs</a>
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"

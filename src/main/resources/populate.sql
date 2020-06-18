@@ -7,3 +7,6 @@ INSERT INTO job_seeker(about_you,email,profile_title, experience,first_name,last
 INSERT INTO JobSeeker_skills (JobSeeker_id, skills) VALUES(1,'Java');
 INSERT INTO JobSeeker_skills (JobSeeker_id, skills) VALUES(1,'J2EE');
 INSERT INTO JobSeeker_skills (JobSeeker_id, skills) VALUES(1,'Spring');
+
+INSERT INTO employer(about_you,email,first_name,last_name,phone,user_id) VALUES('I am a Employer','bleardd@gmail.com','Bleard','Rexhaj','(555) 555-1234',3);
+INSERT INTO job(job_company_name,job_description,job_name,job_salary,publisher_id,employee_id) VALUES('Tech Riders','Web Development Company','Back-End',9000,1,null);
