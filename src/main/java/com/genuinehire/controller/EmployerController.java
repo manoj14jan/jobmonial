@@ -132,16 +132,18 @@ public class EmployerController {
     }
 
     @RequestMapping(value = "/hire/{id}/save", method = RequestMethod.GET)
-    public String saveEmployer(@SessionAttribute("jobSeeker") JobSeeker jobSeeker,Model m, @PathVariable("id") Long id) {
-        jobSeeker = jobSeekerService.getJobSeekerById(id);
+    public String saveEmployer(Model m, @PathVariable("id") Long id) {
         m.addAttribute("jobs", jobService.getAll());
+        m.addAttribute("jobSeekerId", id);
         return "/employer/employer-hire-jobselect";
     }
 
-    @RequestMapping(value = "/hire/{id}/save", method = RequestMethod.POST)
-    public String saveEmployerData(Model m, @PathVariable("id") Long id) {
-        m.addAttribute("jobSeekerId", id);
-        return "/employer/employer-hire";
+    @RequestMapping(value = "/hire/{id}/savedata", method = RequestMethod.POST)
+    public String saveEmployerData(@RequestParam("jobSeekerId") Long jobSeekerId,Model m, @PathVariable("id") Long jobId) {
+        JobSeeker jobSeeker = jobSeekerService.getJobSeekerById(jobSeekerId);
+        Job job = jobService.getJobById(jobId);
+        job.setJobSeeker(jobSeeker);
+        jobService.save(job);
+        return "redirect:/employer/home";
     }
-
 }

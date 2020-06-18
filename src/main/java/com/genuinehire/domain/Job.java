@@ -82,4 +82,12 @@ public class Job {
     public void setEmployer(Employer employer) {
         this.employer = employer;
     }
+
+    public JobSeeker getJobSeeker() {
+        return jobSeeker;
+    }
+
+    public void setJobSeeker(JobSeeker jobSeeker) {
+        this.jobSeeker = jobSeeker;
+    }
 }

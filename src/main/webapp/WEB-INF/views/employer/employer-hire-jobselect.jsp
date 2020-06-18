@@ -12,14 +12,17 @@
 <div class="container">
     <jsp:include page="./employer-navbar.jsp" />
     <c:forEach items="${jobs}" var="elem">
+        <form:form modelAttribute="elem" action="${pageContext.request.contextPath}/employer/hire/${elem.id}/savedata">
+            <input type="hidden" name="jobSeekerId" value="${jobSeekerId}">
         <div class="card">
             <div class="card-body">
                 Company Name: <h5 class="card-title"> ${elem.companyName}</h5>
                 Job Description: <h6 class="card-subtitle mb-2 text-muted">${elem.jobDescription}</h6>
                 <p class="card-text">Salary: ${elem.salary}</p>
-                <a href="${pageContext.request.contextPath}/employer/hire/${elem.jobSeekerId}/save" class="btn btn-outline-secondary btn-lg btn-block btn-sm">Hire</a>
+                <button type="submit" class="btn btn-outline-secondary btn-lg btn-block btn-sm">Select</button>
             </div>
         </div>
+        </form:form>
     </c:forEach>
 </div>
 <jsp:include page="../footer.jsp" />
