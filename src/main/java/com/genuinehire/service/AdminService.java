@@ -1,8 +1,10 @@
 package com.genuinehire.service;
 
-import org.springframework.stereotype.Service;
+import com.genuinehire.domain.JobSeeker;
 
-@Service
-public class AdminService {
 
+import java.util.List;
+
+public interface AdminService {
+    public List<JobSeeker> getUserByUsername(String username);
 }
