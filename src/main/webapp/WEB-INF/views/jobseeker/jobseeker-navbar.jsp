@@ -32,7 +32,7 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">Add Review</a>
+				<a class="nav-link" href="${pageContext.request.contextPath}/jobseeker/review">Add Review</a>
 			</li>
 		</ul>
 
