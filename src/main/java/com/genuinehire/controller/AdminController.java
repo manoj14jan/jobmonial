@@ -1,7 +1,10 @@
 package com.genuinehire.controller;
 
+import com.genuinehire.domain.Employer;
 import com.genuinehire.domain.JobSeeker;
 import com.genuinehire.service.AdminService;
+import com.genuinehire.service.EmployerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,9 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
+	@Autowired
+	private EmployerService employerService;
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(@ModelAttribute User admin, Authentication authentication) {
 		admin = userService.getUserByUsername(authentication.getName());
@@ -47,7 +53,19 @@ public class AdminController {
 		userService.addUser(admin);
 		return "redirect:/admin/home";
 	}
+	
+	@RequestMapping(value = "/employerSearch", method = RequestMethod.GET)
+	public String employerSearch(@ModelAttribute Employer employer, Model model) {
+		model.addAttribute("Employer",employer);
+		return "admin/employer-search";
+	}
 
+	@RequestMapping(value="/employerSearch", method=RequestMethod.POST)
+	public String employerSearchQuery(@RequestParam("name") String name, Model model) {
+		model.addAttribute("lists",employerService.getEmployerByUserUsername(name));
+		//model.addAttribute("lists",adminService.getUserByprofileTitle(profileTitle));
+		return "admin/employerList";
+	}
 
 	@RequestMapping(value = "/jobSeekerSearch", method = RequestMethod.GET)
 	public String home(@ModelAttribute JobSeeker jobSeeker, Model model) {
@@ -57,14 +75,8 @@ public class AdminController {
 
 	@RequestMapping(value="/jobSeekerSearch", method=RequestMethod.POST)
 	public String welcomeUser( @RequestParam("profileTitle") String profileTitle, Model model) {
-
-
-			  model.addAttribute("lists", adminService.getUserByprofileTitle( profileTitle));
-
-			  return "admin/list";
-
-
-
+		  model.addAttribute("lists", adminService.getUserByprofileTitle( profileTitle));
+		  return "admin/jobSeekerList";
 	}
 
 
