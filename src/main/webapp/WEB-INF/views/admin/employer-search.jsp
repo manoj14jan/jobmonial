@@ -26,19 +26,22 @@
 </head>
 <body>
 <div class="container">
-    <jsp:include page="navbar.jsp" />
+    <jsp:include page="./navbar.jsp" />
     <div class="jumbotron">
-        <form:form modelAttribute="jobSeeker">
+        <form:form modelAttribute="employer">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">JobSeeker Search</h5>
-
+                    <h5 class="card-title">Employer Search</h5>
                     <div class="form-group">
-                        <form:input path="profileTitle" cssClass="form-control" id="profileTitle"
-                        aria-describedby="profileTitle" placeholder="Job Title" />
-                        <form:errors path="profileTitle" cssClass="invalid-feedback" element="div" />
+                        <form:input path="name" cssClass="form-control" id="name"
+                        aria-describedby="name" placeholder="Username, or" />
+                        <form:errors path="name" cssClass="invalid-feedback" element="div" />
                     </div>
-
+                    <%-- <div class="form-group">
+                        <form:input path="company" cssClass="form-control" id="company"
+                        aria-describedby="company" placeholder="Job Title" />
+                        <form:errors path="company" cssClass="invalid-feedback" element="div" />
+                    </div> --%>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
 

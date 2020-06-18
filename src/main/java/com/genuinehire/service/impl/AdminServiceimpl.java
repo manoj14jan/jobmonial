@@ -10,20 +10,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AdminimplServiceimpl implements AdminService {
+public class AdminServiceimpl implements AdminService {
 
     @Autowired
     AdminRepository adminRepository;
 
     @Override
-    public List<JobSeeker> getUserByUsername(String username) {
+    public List<JobSeeker> getUserByUsername(String name) {
 
-        return adminRepository.findAllUsersByUsername(username);
+        return adminRepository.findAllUsersByUsername(name);
     }
     
     @Override
     public List<JobSeeker> getUserByprofileTitle(String profileTitle) {
 
         return adminRepository.findAllUsersByprofileTitle(profileTitle);
+    }
+
+    @Override
+    public List<JobSeeker> getUserByprofileTitleAndName(String profileTitle, String name) {
+
+        return adminRepository.findAllUsersByprofileTitleAndName(name,profileTitle);
+
     }
 }

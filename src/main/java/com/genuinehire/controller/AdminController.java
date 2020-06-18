@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.genuinehire.domain.User;
 import com.genuinehire.service.UserService;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -33,13 +34,7 @@ public class AdminController {
 		}
 		return "/admin/home";
 	}
-	
-	@RequestMapping(value = "/profile")
-	public String profile(ModelMap model, Authentication authentication) {
-		User admin = userService.getUserByUsername(authentication.getName());
-		model.addAttribute("admin", admin);
-		return "/admin/profile";
-	}
+
 	
 	@RequestMapping(value = "/add")
 	public String display(@ModelAttribute User admin, Authentication authentication) {
@@ -61,10 +56,17 @@ public class AdminController {
 	}
 
 	@RequestMapping(value="/jobSeekerSearch", method=RequestMethod.POST)
-	public String welcomeUser(@RequestParam("firstName") String name, @RequestParam("profileTitle") String profileTitle, Model model) {
-		model.addAttribute("lists",adminService.getUserByUsername(name));
-		//model.addAttribute("lists",adminService.getUserByprofileTitle(profileTitle));
-		return "admin/list";
+	public String welcomeUser( @RequestParam("profileTitle") String profileTitle, Model model) {
+
+
+			  model.addAttribute("lists", adminService.getUserByprofileTitle( profileTitle));
+
+			  return "admin/list";
+
+
+
 	}
+
+
 
 }
