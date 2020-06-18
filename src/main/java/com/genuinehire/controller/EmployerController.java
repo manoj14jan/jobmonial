@@ -101,7 +101,7 @@ public class EmployerController {
         }
         job.setEmployer(employer);
         jobService.save(job);
-        return "/employer/employer-jobs";
+        return "redirect:/employer/home";
     }
 
     @RequestMapping(value = "/job/{id}/edit", method = RequestMethod.GET)
@@ -111,7 +111,10 @@ public class EmployerController {
     }
 
     @RequestMapping(value = "/job/update", method = RequestMethod.POST)
-    public String updateJob(@ModelAttribute("job") Job job, Model m) {
+    public String updateJob(@Valid @ModelAttribute("job") Job job,BindingResult bindingResult, Model m) {
+        if(bindingResult.hasErrors()){
+            return "/employer/employer-job-update";
+        }
         Employer employer = employerService.getEmployerById(job.getEmployer().getId());
         job.setEmployer(employer);
         jobService.save(job);

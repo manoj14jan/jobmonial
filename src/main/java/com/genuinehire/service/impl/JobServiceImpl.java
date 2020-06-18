@@ -16,6 +16,9 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Job save(Job job) {
+        if(job.getStatus() == null || job.getStatus().equalsIgnoreCase("")){
+            job.setStatus("available");
+        }
         return jobRepository.save(job);
     }
 
