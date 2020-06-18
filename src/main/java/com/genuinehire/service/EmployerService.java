@@ -7,4 +7,5 @@ public interface EmployerService {
     Employer getEmployerByUserUsername(String name);
     void delete(Employer employer);
     void updateEmployer(Employer employer);
+    Employer getEmployerById(long id);
 }

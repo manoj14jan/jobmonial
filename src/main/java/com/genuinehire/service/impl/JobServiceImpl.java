@@ -30,4 +30,14 @@ public class JobServiceImpl implements JobService {
     public List<Job> getEmployerJobs(Employer employer) {
         return jobRepository.findAllByEmployerId(employer.getId());
     }
+
+    @Override
+    public Job getJobById(Long id) {
+        return jobRepository.findOne(id);
+    }
+
+    @Override
+    public void delete(Job job) {
+        jobRepository.delete(job);
+    }
 }

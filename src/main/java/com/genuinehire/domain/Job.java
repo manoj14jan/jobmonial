@@ -31,6 +31,10 @@ public class Job {
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     private Employer employer;
 
+    @OneToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "id", nullable = true)
+    private JobSeeker jobSeeker;
+
     public long getId() {
         return id;
     }

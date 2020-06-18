@@ -31,4 +31,9 @@ public class EmployerServiceImpl implements EmployerService {
     public void updateEmployer(Employer employer) {
         employerRepository.save(employer);
     }
+
+    @Override
+    public Employer getEmployerById(long id) {
+        return employerRepository.findOne(id);
+    }
 }

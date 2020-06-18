@@ -28,7 +28,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/employer/job/hire">Hire Employees</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/employer/hire">Hire Employees</a>
             </li>
 
             <li class="nav-item">

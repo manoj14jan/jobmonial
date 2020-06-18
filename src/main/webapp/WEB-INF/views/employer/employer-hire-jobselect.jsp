@@ -17,10 +17,7 @@
                 Company Name: <h5 class="card-title"> ${elem.companyName}</h5>
                 Job Description: <h6 class="card-subtitle mb-2 text-muted">${elem.jobDescription}</h6>
                 <p class="card-text">Salary: ${elem.salary}</p>
-                <div class="bd-example">
-                    <a href="${pageContext.request.contextPath}/employer/job/${elem.id}/edit" class="btn btn-outline-secondary">Edit</a>
-                    <a href="${pageContext.request.contextPath}/employer/job/${elem.id}/delete" class="btn btn-outline-danger">Delete</a>
-                </div>
+                <a href="${pageContext.request.contextPath}/employer/hire/${elem.jobSeekerId}/save" class="btn btn-outline-secondary btn-lg btn-block btn-sm">Hire</a>
             </div>
         </div>
     </c:forEach>

@@ -17,7 +17,7 @@
                 <p class="card-text">${employer.aboutYou}</p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">job Seeker Id:
+                <li class="list-group-item">Employer Id:
                     ${employer.id}</li>
                 <li class="list-group-item">First Name: ${employer.name}</li>
                 <li class="list-group-item">Last Name: ${employer.surname}</li>

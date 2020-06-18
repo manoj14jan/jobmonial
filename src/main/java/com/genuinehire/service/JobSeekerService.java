@@ -8,6 +8,8 @@ import com.genuinehire.domain.JobSeeker;
 import com.genuinehire.repository.JobSeekerRepository;
 import com.genuinehire.util.Role;
 
+import java.util.List;
+
 @Service
 public class JobSeekerService {
 
@@ -22,4 +24,11 @@ public class JobSeekerService {
 		return jobSeekerRepository.findByUserUsername(username);
 	}
 
+    public List<JobSeeker> getAllJobSeekers() {
+		return (List<JobSeeker>)jobSeekerRepository.findAll();
+    }
+
+    public JobSeeker getJobSeekerById(Long id) {
+		return jobSeekerRepository.findOne(id);
+    }
 }

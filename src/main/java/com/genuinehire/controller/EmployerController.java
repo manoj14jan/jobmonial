@@ -2,17 +2,17 @@ package com.genuinehire.controller;
 
 import com.genuinehire.domain.Employer;
 import com.genuinehire.domain.Job;
+import com.genuinehire.domain.JobSeeker;
 import com.genuinehire.scurity.CustomUserDetails;
+import com.genuinehire.service.JobSeekerService;
 import com.genuinehire.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import com.genuinehire.service.EmployerService;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -26,6 +26,9 @@ public class EmployerController {
 
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private JobSeekerService jobSeekerService;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home(@ModelAttribute Employer employer, Authentication authentication, Model m) {
@@ -100,9 +103,45 @@ public class EmployerController {
         return "/employer/employer-jobs";
     }
 
-
-    @RequestMapping(value = "/job/update", method = RequestMethod.GET)
-    public String updateJob() {
-        return "employer/employer-job-update";
+    @RequestMapping(value = "/job/{id}/edit", method = RequestMethod.GET)
+    public String editJob(@PathVariable("id") Long id, Model m) {
+        m.addAttribute("job", jobService.getJobById(id));
+        return "/employer/employer-job-update";
     }
+
+    @RequestMapping(value = "/job/update", method = RequestMethod.POST)
+    public String updateJob(@ModelAttribute("job") Job job, Model m) {
+        Employer employer = employerService.getEmployerById(job.getEmployer().getId());
+        job.setEmployer(employer);
+        jobService.save(job);
+        return "redirect:/employer/home";
+    }
+
+    @RequestMapping(value = "/job/{id}/delete", method = RequestMethod.GET)
+    public String deleteJob(@PathVariable("id") Long id, Model m) {
+        Job job = jobService.getJobById(id);
+        job.setEmployer(null);
+        jobService.delete(job);
+        return "redirect:/employer/home";
+    }
+
+    @RequestMapping(value = "/hire", method = RequestMethod.GET)
+    public String hireEmployee(Model m) {
+        m.addAttribute("jobseekers", jobSeekerService.getAllJobSeekers());
+        return "/employer/employer-hire";
+    }
+
+    @RequestMapping(value = "/hire/{id}/save", method = RequestMethod.GET)
+    public String saveEmployer(@SessionAttribute("jobSeeker") JobSeeker jobSeeker,Model m, @PathVariable("id") Long id) {
+        jobSeeker = jobSeekerService.getJobSeekerById(id);
+        m.addAttribute("jobs", jobService.getAll());
+        return "/employer/employer-hire-jobselect";
+    }
+
+    @RequestMapping(value = "/hire/{id}/save", method = RequestMethod.POST)
+    public String saveEmployerData(Model m, @PathVariable("id") Long id) {
+        m.addAttribute("jobSeekerId", id);
+        return "/employer/employer-hire";
+    }
+
 }
