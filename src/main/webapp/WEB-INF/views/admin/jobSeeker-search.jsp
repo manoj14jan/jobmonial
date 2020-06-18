@@ -28,26 +28,19 @@
 <div class="container">
     <jsp:include page="../navbar.jsp" />
     <div class="jumbotron">
-        <form:form modelAttribute="jobSeeker"
-                 >
-
-
-
+        <form:form modelAttribute="jobSeeker">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Registration Form</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Fields are required
-                        which mark with *</h6>
-
+                    <h5 class="card-title">JobSeeker Search</h5>
                     <div class="form-group">
-                        <label for="firstName">Username*</label>
                         <form:input path="firstName" cssClass="form-control" id="firstName"
-                                    aria-describedby="firstName" placeholder="Enter username" />
-                        <form:errors path="firstName" cssClass="invalid-feedback"
-                                     element="div" />
-
-                        <small id="usernameHelp" class="form-text text-muted">Remember
-                            your Username for login</small>
+                        aria-describedby="firstName" placeholder="Username, or" />
+                        <form:errors path="firstName" cssClass="invalid-feedback" element="div" />
+                    </div>
+                    <div class="form-group">
+                        <form:input path="profileTitle" cssClass="form-control" id="profileTitle"
+                        aria-describedby="profileTitle" placeholder="Job Title" />
+                        <form:errors path="profileTitle" cssClass="invalid-feedback" element="div" />
                     </div>
 
 

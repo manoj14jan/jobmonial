@@ -27,8 +27,17 @@
 				<a class="nav-link" href="${pageContext.request.contextPath}/admin/add">Add Admin</a>
 			</li>
 
-			<li class="nav-item">
-				<a class="nav-link" href="#">Search</a>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Search </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item"
+						href="${pageContext.request.contextPath}/admin/jobSeekerSearch">Job Seeker
+						Search</a>
+					<a class="dropdown-item"
+						href="">Employer Search</a>
+				</div>
 			</li>
 
 		</ul>

@@ -18,6 +18,12 @@ public class AdminimplServiceimpl implements AdminService {
     @Override
     public List<JobSeeker> getUserByUsername(String username) {
 
-        return adminRepository.findAllUsers(username);
+        return adminRepository.findAllUsersByUsername(username);
+    }
+    
+    @Override
+    public List<JobSeeker> getUserByprofileTitle(String profileTitle) {
+
+        return adminRepository.findAllUsersByprofileTitle(profileTitle);
     }
 }

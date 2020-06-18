@@ -22,6 +22,9 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private AdminService adminService;
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(@ModelAttribute User admin, Authentication authentication) {
 		admin = userService.getUserByUsername(authentication.getName());
@@ -51,15 +54,16 @@ public class AdminController {
 	}
 
 
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/jobSeekerSearch", method = RequestMethod.GET)
 	public String home(@ModelAttribute JobSeeker jobSeeker, Model model) {
- model.addAttribute("JobSeeker",jobSeeker);
-	return "admin/admin-search";
+		model.addAttribute("JobSeeker",jobSeeker);
+		return "admin/jobSeeker-search";
 	}
 
-	@RequestMapping(value="/search", method=RequestMethod.POST)
-	public String welcomeUser(@RequestParam("firstName") String name,Model model) {
-		model.addAttribute("lists",userService.getUserByUsername(name));
+	@RequestMapping(value="/jobSeekerSearch", method=RequestMethod.POST)
+	public String welcomeUser(@RequestParam("firstName") String name, @RequestParam("profileTitle") String profileTitle, Model model) {
+		model.addAttribute("lists",adminService.getUserByUsername(name));
+		//model.addAttribute("lists",adminService.getUserByprofileTitle(profileTitle));
 		return "admin/list";
 	}
 
