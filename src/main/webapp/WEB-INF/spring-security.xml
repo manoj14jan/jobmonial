@@ -9,16 +9,16 @@
 
 	<http auto-config="true">
 
-		<intercept-url pattern="/admin**"
+		<intercept-url pattern="/admin/**"
 			access="hasRole('ROLE_ADMIN')" />
 
-		<intercept-url pattern="/employer**"
+		<intercept-url pattern="/employer/**"
 			access="hasRole('ROLE_EMPLOYER')" />
 
-		<intercept-url pattern="/JobSeeker**"
+		<intercept-url pattern="/JobSeeker/**"
 			access="hasRole('ROLE_JOBSEEKER')" />
 
-		<intercept-url pattern="/home**"
+		<intercept-url pattern="/home/**"
 			access="hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYER','ROLE_JOBSEEKER')" />
 
 		<csrf disabled="true" />
