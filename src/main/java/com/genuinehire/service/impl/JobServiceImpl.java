@@ -40,4 +40,9 @@ public class JobServiceImpl implements JobService {
     public void delete(Job job) {
         jobRepository.delete(job);
     }
+    
+    @Override
+    public List<Job> getJobBySkills(String skills) {
+       return jobRepository.findAllBySkills(skills);
+    }
 }

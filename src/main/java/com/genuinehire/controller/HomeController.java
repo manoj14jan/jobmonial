@@ -1,28 +1,26 @@
 package com.genuinehire.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
-import com.genuinehire.domain.Job;
-import com.genuinehire.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.genuinehire.domain.JobSeeker;
+import com.genuinehire.domain.Job;
 import com.genuinehire.domain.User;
-import com.genuinehire.service.JobSeekerService;
+import com.genuinehire.service.JobService;
 import com.genuinehire.service.UserService;
 import com.genuinehire.util.Role;
-
-import java.util.List;
 
 @Controller
 public class HomeController {
@@ -40,8 +38,9 @@ public class HomeController {
 
 	@RequestMapping(value = "/home")
 	public String home(Authentication authentication) {
+		System.out.println("authentication.getName() "+ authentication.getName());
 		User user = userService.getUserByUsername(authentication.getName());
-
+		System.out.println(user);
 		if (user.getRole().contains("ROLE_ADMIN")) {
 			return "redirect:/admin";
 		}
@@ -72,9 +71,24 @@ public class HomeController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@Valid @ModelAttribute User user, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
+
+		User isUserExist = userService.getUserByUsername(user.getUsername());
+
+		if (isUserExist != null) {
+			FieldError usernameError = new FieldError("user", "username", "Username is already exist");
+			bindingResult.addError(usernameError);
+		}
+
+		if (!user.getPassword().equals(user.getRetypePassword())) {
+			FieldError usernameError = new FieldError("user", "retypePassword",
+					"Retype password must match with password");
+			bindingResult.addError(usernameError);
+		}
+
 		if (bindingResult.hasErrors()) {
 			return "register-form";
 		}
+
 		user = userService.addUser(user);
 		redirectAttributes.addFlashAttribute(user);
 		return "redirect:/register/success";
@@ -84,7 +98,6 @@ public class HomeController {
 	public String registerSuccess(@ModelAttribute User user) {
 		return "register-success";
 	}
-
 
 	@RequestMapping(value = "/jobs", method = RequestMethod.GET)
 	public String showJobs(Model m) {

@@ -2,6 +2,7 @@ package com.genuinehire.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
@@ -70,10 +72,14 @@ public class JobSeeker implements Serializable {
 	private String aboutYou;
 
 	@Valid
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+    private Set<Job> Jobs;
+	
+	
 	/**
 	 * @return the jobSeekerId
 	 */
@@ -213,4 +219,21 @@ public class JobSeeker implements Serializable {
 	public void setProfileTitle(String profileTitle) {
 		this.profileTitle = profileTitle;
 	}
+
+	/**
+	 * @return the jobs
+	 */
+	public Set<Job> getJobs() {
+		return Jobs;
+	}
+
+	/**
+	 * @param jobs the jobs to set
+	 */
+	public void setJobs(Set<Job> jobs) {
+		Jobs = jobs;
+	}
+	
+	
+	
 }

@@ -53,7 +53,7 @@
 
 	<!-- Scan for transaction-based resources -->
 	<context:component-scan
-		base-package="com.genuinehire.service,com.genuinehire.repository" />
+		base-package="com.genuinehire" />
 
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />

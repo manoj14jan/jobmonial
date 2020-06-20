@@ -22,7 +22,7 @@
 	<div class="container">
 		<jsp:include page="./navbar.jsp" />
 		<div class="jumbotron">
-			<form:form modelAttribute="jobSeeker"
+			<form:form modelAttribute="user"
 				action="${pageContext.request.contextPath}/register">
 
 				<form:hidden path="role" />

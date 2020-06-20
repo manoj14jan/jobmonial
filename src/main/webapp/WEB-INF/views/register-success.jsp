@@ -17,7 +17,7 @@
 			<p class="lead">Now goto the login page. Login with you Username:
 				"${user.username}" and Password:*******</p>
 			<hr class="my-4">
-			<p>Have a great job search. send an email to Admin for support or
+			<p>Have a great genuine search. send an email to Admin for support or
 				suggestion</p>
 			<p class="lead">
 				<a class="btn btn-primary btn-lg"

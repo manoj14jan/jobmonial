@@ -27,16 +27,10 @@ public class UserServiceImpl implements UserService {
 			return new CustomUserDetails(user);
 		}
 	}
-	
+
+	@Override
 	public User getUserByUsername(String username) {
-
-		User user = userRepository.findByUsername(username);
-
-		if (null == user) {
-			throw new UsernameNotFoundException("No user present with username: " + username);
-		} else {
-			return  user;
-		}
+		return userRepository.findByUsername(username);
 	}
 
 	@Override
@@ -47,5 +41,5 @@ public class UserServiceImpl implements UserService {
 		user.setEnabled(1);
 		return userRepository.save(user);
 	}
-	
+
 }

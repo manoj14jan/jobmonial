@@ -11,4 +11,5 @@ public interface JobService {
     List<Job> getEmployerJobs(Employer employer);
     Job getJobById(Long id);
     void delete(Job job);
+    public List<Job> getJobBySkills(String skills);
 }

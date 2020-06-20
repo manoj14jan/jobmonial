@@ -24,11 +24,11 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">Search Jobs</a>
+				<a class="nav-link" href="${pageContext.request.contextPath}/jobseeker/jobsearch">Search Jobs</a>
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">Applied Jobs</a>
+				<a class="nav-link" href="${pageContext.request.contextPath}/jobseeker/appliedjobs">Applied Jobs</a>
 			</li>
 
 			<li class="nav-item">

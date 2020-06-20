@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface JobRepository extends CrudRepository<Job, Long> {
     List<Job> findAllByEmployerId(long id);
+    List<Job> findAllBySkills(String skills);
 }

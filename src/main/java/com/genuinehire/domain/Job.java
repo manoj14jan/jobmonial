@@ -2,6 +2,9 @@ package com.genuinehire.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -19,10 +22,10 @@ public class Job {
     @Column(name = "job_description")
     private String jobDescription;
 
-    @NotEmpty
-    @Column(name = "job_company_name")
-    private String companyName;
-
+    @Column(name="skills")
+	@ElementCollection(targetClass=String.class, fetch = FetchType.EAGER)
+	private List<String> skills;
+    
     @NotNull
     @Column(name = "job_salary")
     private Integer salary;
@@ -31,9 +34,8 @@ public class Job {
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     private Employer employer;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id", nullable = true)
-    private JobSeeker jobSeeker;
+    @ManyToMany
+    private Set<JobSeeker> jobSeekers;
 
     public long getId() {
         return id;
@@ -49,14 +51,6 @@ public class Job {
 
     public void setJobName(String jobName) {
         this.jobName = jobName;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
     }
 
     public Integer getSalary() {
@@ -83,11 +77,33 @@ public class Job {
         this.employer = employer;
     }
 
-    public JobSeeker getJobSeeker() {
-        return jobSeeker;
-    }
+	/**
+	 * @return the skills
+	 */
+	public List<String> getSkills() {
+		return skills;
+	}
 
-    public void setJobSeeker(JobSeeker jobSeeker) {
-        this.jobSeeker = jobSeeker;
-    }
+	/**
+	 * @param skills the skills to set
+	 */
+	public void setSkills(List<String> skills) {
+		this.skills = skills;
+	}
+
+	/**
+	 * @return the jobSeekers
+	 */
+	public Set<JobSeeker> getJobSeekers() {
+		return jobSeekers;
+	}
+
+	/**
+	 * @param jobSeekers the jobSeekers to set
+	 */
+	public void setJobSeekers(Set<JobSeeker> jobSeekers) {
+		this.jobSeekers = jobSeekers;
+	}
+
+ 
 }
