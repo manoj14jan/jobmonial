@@ -42,7 +42,7 @@ public class HomeController {
 		User user = userService.getUserByUsername(authentication.getName());
 		System.out.println(user);
 		if (user.getRole().contains("ROLE_ADMIN")) {
-			return "redirect:/admin";
+			return "redirect:/admin/home";
 		}
 
 		if (user.getRole().contains("ROLE_EMPLOYER")) {

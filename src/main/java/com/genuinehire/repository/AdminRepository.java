@@ -10,8 +10,14 @@ import java.util.List;
 
 public interface AdminRepository extends CrudRepository<JobSeeker,Long> {
 
-
-
     @Query("SELECT u FROM JobSeeker u where u.firstName=:name")
-    List<JobSeeker> findAllUsers(@Param("name") String name);
+    List<JobSeeker> findAllUsersByUsername(@Param("name") String name);
+    
+    @Query("SELECT u FROM JobSeeker u where u.profileTitle=:profileTitle")
+    List<JobSeeker> findAllUsersByprofileTitle(@Param("profileTitle") String profileTitle);
+
+
+    @Query("SELECT u FROM JobSeeker u where u.profileTitle=:profileTitle and u.firstName=:name")
+    List<JobSeeker> findAllUsersByprofileTitleAndName(@Param("profileTitle") String profileTitle,@Param("name") String name);
+
 }

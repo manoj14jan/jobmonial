@@ -44,6 +44,9 @@
 						Seeker Registration</a>
 				</div>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="${pageContext.request.contextPath}/home">Admin Login</a>
+			</li>
 		</ul>
 	</div>
 </nav>
