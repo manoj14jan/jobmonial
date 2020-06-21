@@ -5,7 +5,8 @@
 <html lang="en">
 <head>
     <jsp:include page="../header.jsp" />
-    <title>Job Seeker Registration</title>
+    <title> Review
+    </title>
 </head>
 <body>
 <div class="container">
@@ -13,6 +14,7 @@
     <form:form modelAttribute="review">
         <div class="card">
             <div class="card-body">
+                <form:errors path="*"/>
                 <h5 class="card-title">Review form</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Fields are required
                     which mark with *</h6>

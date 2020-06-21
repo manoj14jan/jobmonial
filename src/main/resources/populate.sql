@@ -5,7 +5,7 @@ INSERT INTO users(username,password,enabled,role) VALUES ('all','$2a$10$L25iUbld
 
 INSERT INTO job_seeker(about_you,email,profile_title, experience,first_name,last_name,phone,user_id) VALUES('I am a Job Seeker','job@seeker.com','java developer',3,'jobs','seeker1','(555) 555-1234',2);
 INSERT INTO job_seeker(about_you,email,profile_title, experience,first_name,last_name,phone,user_id) VALUES('I am a Job Seeker','job@seeker.com','java developer',1,'jobs','seeker2','(555) 555-1234',1);
-INSERT INTO job_seeker(about_you,email,profile_title, experience,first_name,last_name,phone,user_id) VALUES('I am a Job Seeker','job@seeker.com','java developer',3,'jobs','seeker3','(555) 555-1234',2);
+INSERT INTO job_seeker(about_you,email,profile_title, experience,first_name,last_name,phone,user_id) VALUES('I am a Job Seeker','job@seeker.com','java developer',3,'jobs','seeker3','(555) 555-1234',3);
 INSERT INTO JobSeeker_skills (JobSeeker_id, skills) VALUES(1,'Java');
 INSERT INTO JobSeeker_skills (JobSeeker_id, skills) VALUES(1,'J2EE');
 INSERT INTO JobSeeker_skills (JobSeeker_id, skills) VALUES(1,'Spring');

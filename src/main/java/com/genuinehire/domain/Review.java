@@ -15,26 +15,28 @@ public class Review {
     @Column(name = "id")
     private Long reviewid;
 
-    @NotNull
+    @NotNull(message = "{company_code.error}")
     @Column(name = "company_code")
     private Integer company_code;
 
-    @NotNull
-    @Min(value = 1)
-    @Max(value = 5)
+    @NotNull(message = "{interview_rating.error}")
+    @Min(value = 1,message = "{interview_rating.min.error}")
+    @Max(value = 5,message = "{interview_rating.max.error}")
     @Column(name = "interview_rating")
     private Integer interview_rating;
 
-    @NotNull
-    @Min(value = 1)
-    @Max(value = 5)
+    @NotNull(message = "{salary_Rating.error}")
+    @Min(value = 1,message = "{salary_Rating.min.error}")
+    @Max(value = 5,message = "{salary_Rating.max.error}")
     @Column(name = "salary_Rating")
     private Integer salary_Rating;
-    @NotNull
-    @Min(value = 1)
-    @Max(value = 5)
+
+    @NotNull(message = "{work_life_balance.error}")
+    @Min(value = 1,message = "{work_life_balance.min.error}")
+    @Max(value = 5,message = "{work_life_balance.max.error}")
     @Column(name = "work_life_balance")
     private Integer work_life_Balance;
+
     @NotEmpty
     @Column(name = "Comments")
     private String comments;
