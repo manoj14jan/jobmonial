@@ -57,6 +57,12 @@ public class AdminController {
 		model.addAttribute("Employer",employer);
 		return "admin/employer-search";
 	}
+	
+	@RequestMapping(value="/block", method=RequestMethod.POST)
+	public String employerBlock(@RequestParam("name") Long user_id, Model model) {
+		adminService.block(user_id);
+		return "admin/employerList";
+	}
 
 	@RequestMapping(value="/employerSearch", method=RequestMethod.POST)
 	public String employerSearchQuery(@RequestParam("name") String name, Model model) {

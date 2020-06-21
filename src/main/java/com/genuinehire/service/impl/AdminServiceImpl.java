@@ -33,4 +33,10 @@ public class AdminServiceImpl implements AdminService {
 
         return adminRepository.findAllUsersByprofileTitleAndName(name,profileTitle);
     }
+    
+    @Override
+    public void block(Long user_id) {
+
+        adminRepository.block(user_id);
+    }
 }

@@ -19,5 +19,8 @@ public interface AdminRepository extends CrudRepository<JobSeeker,Long> {
 
     @Query("SELECT u FROM JobSeeker u where u.profileTitle=:profileTitle and u.firstName=:name")
     List<JobSeeker> findAllUsersByprofileTitleAndName(@Param("profileTitle") String profileTitle,@Param("name") String name);
+    
+    @Query("UPDATE user set is_enabled=0 where id=:user_id")
+    void block(@Param("user_id") Long user_id);
 
 }

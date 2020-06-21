@@ -14,25 +14,27 @@
 <body>
 <div class="container">
 		<jsp:include page="./navbar.jsp" />
-		<h1 class="display-4">Results</h1>
-		<table class="table table-hover">
-			<tr>
-		    	<th>First Name</td>
-		    	<th>Last Name</td>
-		    	<th>Phone</td>
-	    		<th>Email</td>
-	    		<th style='text-align:center'>Admin Action</th>
-		    </tr>
-			
-			<tr>
-		        <td><c:out value="${lists.name}"/></td>
-		        <td><c:out value="${lists.surname}"/></td>
-		        <td><c:out value="${lists.phone}"/></td>
-		        <td><c:out value="${lists.email}"/></td>
-		        <td style='text-align:center'><button type="submit" class="btn btn-danger">Block User</button></td>
-		    </tr>
-			
-		</table>
+		<form:form modelAttribute="employer">
+			<h1 class="display-4">Results</h1>
+			<!--  --><table class="table table-hover">-->
+				<tr>
+			    	<th>First Name</td>
+			    	<th>Last Name</td>
+			    	<th>Phone</td>
+		    		<th>Email</td>
+		    		<th style='text-align:center'>Admin Action</th>
+			    </tr>
+				
+				<tr>
+			        <td><c:out value="${lists.name}"/></td>
+			        <td><c:out value="${lists.surname}"/></td>
+			        <td><c:out value="${lists.phone}"/></td>
+			        <td><c:out value="${lists.email}"/></td>
+			        <td style='text-align:center'><!--<form:hidden path="user_id" value="${lists.user_id}" />--><button type="submit" class="btn btn-danger">Block User</button></td>
+			    </tr>
+				
+			</table>
+		<!--</form:form>-->
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>
